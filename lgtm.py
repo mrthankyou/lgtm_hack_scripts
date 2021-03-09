@@ -3,6 +3,7 @@ from typing import Optional, List, Dict
 
 import requests
 import yaml
+# import utils.cacher
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 
@@ -371,3 +372,45 @@ class LGTMDataFilters:
             org=org,
             state=state
         )
+    #
+    # @staticmethod
+    # def build_project_build(project: dict) -> ProjectBuild:
+    #     org: str
+    #     display_name: str
+    #     key: str
+    #     project_type: str
+    #     is_valid_project: bool = True
+    #     state: str = ""
+    #
+    #     if 'protoproject' in project:
+    #         the_project = project['protoproject']
+    #         if 'https://github.com/' not in the_project['cloneUrl']:
+    #             # Not really concerned with BitBucket right now
+    #             is_valid_project = False
+    #         display_name = the_project['displayName']
+    #         state = the_project['state']
+    #         org = display_name.split('/')[0]
+    #         key = the_project['key']
+    #         project_type = 'protoproject'
+    #     elif 'realProject' in project:
+    #         the_project = project['realProject'][0]
+    #         if the_project['repoProvider'] != 'github_apps':
+    #             # Not really concerned with BitBucket right now
+    #             is_valid_project = False
+    #         org = str(the_project['slug']).split('/')[1]
+    #         display_name = the_project['displayName']
+    #         key = the_project['key']
+    #         project_type = "realProject"
+    #     else:
+    #         # We raise this in cases where we can't intrepret the data we get
+    #         # back from LGTM.
+    #         is_valid_project = False
+    #
+    #     return ProjectBuild(
+    #         display_name=display_name,
+    #         key=key,
+    #         project_type=project_type,
+    #         is_valid_project=is_valid_project,
+    #         org=org,
+    #         state=state
+    #     )
