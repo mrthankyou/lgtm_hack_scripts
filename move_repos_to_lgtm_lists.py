@@ -31,8 +31,12 @@ def process_cached_file(cached_file_name: str, site: 'LGTMSite'):
     print("Done processing cache file.")
 
 site = LGTMSite.create_from_file()
+user_selected_cached_file = sys.argv[1]
 
-for cached_file_name in os.listdir("cache"):
-    process_cached_file(cached_file_name, site)
+if user_selected_cached_file:
+    process_cached_file(user_selected_cached_file, site)
+else:
+    for cached_file_name in os.listdir("cache"):
+        process_cached_file(f'cache/{cached_file_name}', site)
 
 print("Finished!")
