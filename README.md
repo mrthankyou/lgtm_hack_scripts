@@ -70,6 +70,24 @@ python3 follow_top_repos_by_star_count.py <LANGUAGE> <CUSTOM_LIST_NAME>(optional
 
 # Unfollows all projects you're currently following that are not in a custom list.
 python3 unfollow_all_followed_projects.py
+
+# Takes all currently followed repos and moves them to a custom list.
+python3 move_all_repos_to_lgtm_lists.py <CUSTOM_LIST_NAME>
+
+# Provided a output file containing ghtopdep's JSON output, this script will follow all repos from the
+# ghtopdep's results in your LGTM account.
+python3 follow_repos_from_ghtopdep.py <FILE_PATH_TO_THE_GHTOPDEP_JSON_OUTPUT_FILE>
+
+# Given you've ran the custom projects lists feature, this script will process the cached files
+# and move the selected followed projects into a given cached file. Providing a single argument
+# of the name of the cached file will result in just that cached file being processed. Providing
+# no arguments will result in every cached fiel in being processed.
+python3 move_repos_to_lgtm_lists.py <NAME_OF_CACHED_FILE>(optional)
+
+# Given you've ran the custom projects lists feature, this script will process the cached files
+# and unfollow the projects from your followed project list. This is useful if you ever nerf your
+# followed projects list and you still retained a list of followed projects.
+python3 unfollow_projects_from_cached_file.py <NAME_OF_CACHED_FILE>(optional)
 ```
 
 ## The Custom Projects Lists Feature
