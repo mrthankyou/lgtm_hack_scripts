@@ -10,8 +10,7 @@ def get_project_list_id(cached_file_name: str, site: 'LGTMSite') -> str:
     return site.get_or_create_project_list(project_list_name)
 
 def process_cached_file(cached_file_name: str, site: 'LGTMSite'):
-    cached_file = "cache/" + cached_file_name
-    project_builds = utils.cacher.get_project_builds(cached_file)
+    project_builds = utils.cacher.get_project_builds(cached_file_name)
     followed_projects = site.get_my_projects()
 
     if project_builds.build_processes_in_progress(followed_projects):
@@ -26,15 +25,19 @@ def process_cached_file(cached_file_name: str, site: 'LGTMSite'):
     # If a project fails to be processed by LGTM, we still unfollow the project.
     print("Unfollowing projects")
     project_builds.unfollow_projects(site)
-    print("Removing the cache file.")
-    utils.cacher.remove_file(cached_file)
+
+    # Temporarily commenting this out as I'm having issues following projects and would
+    # like to retain the list of cached files
+    #
+    # print("Removing the cache file.")
+    # utils.cacher.remove_file(cached_file_name)
     print("Done processing cache file.")
 
 site = LGTMSite.create_from_file()
 user_selected_cached_file = sys.argv[1]
 
 if user_selected_cached_file:
-    process_cached_file(user_selected_cached_file, site)
+    process_cached_file(f'cache/{user_selected_cached_file}', site)
 else:
     for cached_file_name in os.listdir("cache"):
         process_cached_file(f'cache/{cached_file_name}', site)
