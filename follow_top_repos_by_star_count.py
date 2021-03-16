@@ -20,13 +20,13 @@ def save_project_to_lgtm(site: 'LGTMSite', repo_name: str) -> dict:
     print("Saved the project: " + repo_name)
     return project
 
-def find_and_save_projects_to_lgtm(language: str) -> List[str]:
+def find_and_save_projects_to_lgtm(language: str, stars: int) -> List[str]:
     github = utils.github_api.create()
     site = LGTMSite.create_from_file()
     saved_project_data: List[str] = []
 
     for date_range in utils.github_dates.generate_dates():
-        repos = github.search_repositories(query=f'stars:>500 created:{date_range} fork:false sort:stars language:{language}')
+        repos = github.search_repositories(query=f'stars:>{stars} created:{date_range} fork:false sort:stars language:{language}')
 
         for repo in repos:
             # Github has rate limiting in place hence why we add a sleep here. More info can be found here:
@@ -51,8 +51,16 @@ if len(sys.argv) < 2:
 
 language = sys.argv[1].capitalize()
 
+# default min stars searched is 500
+stars = 500
+
+try:
+    stars = sys.argv[3]
+except IndexError:
+    # Do nothing, continue on
+
 print('Following the top repos for %s' % language)
-saved_project_data = find_and_save_projects_to_lgtm(language)
+saved_project_data = find_and_save_projects_to_lgtm(language, stars)
 
 # If the user provided a second arg then they want to create a custom list.
 if len(sys.argv) <= 3:
