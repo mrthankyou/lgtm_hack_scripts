@@ -1,6 +1,19 @@
+# THIS SCRIPT WILL TAKE ALL FOLLOWED PROJECTS ON LGTM AND MOVE THEM INTO A CUSTOM LIST.
+# THIS IS USEFUL IF YOU ARE USING THIS SCRIPT ALONGSIDE THE  follow_repos_from_ghtopdep.py
+# SCRIPT WHICH WILL SIMPLY TAKE THE RESULTS OF THE GHTOPDEP TOOL AND THEN FOLLOW THEM ON
+# LGTM.COM WITHOUT PASSING TO A CUSTOM LIST. ANOTHER WAY TO PUT IT, THIS SCRIPT MOVES
+# ALL THOSE REPOS TO A CUSTOM LIST.
+
+# python3 move_all_repos_to_lgtm_lists.py <CUSTOM_LIST_NAME>
+
+
 from typing import List
 from lgtm import LGTMSite, LGTMDataFilters
-from utils.cacher import ProjectBuild, ProjectBuilds
+# from utils.cacher import ProjectBuild, ProjectBuilds
+from models import ProjectBuild, ProjectBuilds
+# import models.ProjectBuild
+# import models.ProjectBuilds
+# import models
 
 import os
 import sys
@@ -33,15 +46,15 @@ for project in projects:
 
 project_builds_class = ProjectBuilds(project_builds)
 
-if project_builds_class.build_processes_in_progress(projects):
-    print(f'The {cached_file_name} can\'t be processed at this time because a project build is still in progress.')
+if project_builds_class.build_processes_in_progress():
+    print(f'Some projects are still being processed or have failed. Ignoring these projects for now.')
     exit
 
 
-# print("adding to list")
-# successful_builds = project_builds_class.return_successful_project_builds(site)
-# site.load_into_project_list(project_list_id, successful_builds)
-# print("unfollowing projects")
+print("adding to list")
+successful_builds = project_builds_class.return_successful_project_builds(site)
+site.load_into_project_list(project_list_id, successful_builds)
+print("unfollowing projects")
 
 project_builds_class.unfollow_projects(site)
 print("Finished!")
