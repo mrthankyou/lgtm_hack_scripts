@@ -1,3 +1,6 @@
+# I'm assuming this is the script i want to use to convert cached projects to a custom list.
+# python3 move_cached_repos_to_lgtm_lists.py
+
 from typing import List
 from lgtm import LGTMSite
 

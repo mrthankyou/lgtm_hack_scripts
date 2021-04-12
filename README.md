@@ -66,7 +66,7 @@ python3 follow_repos_by_search_term_via_code_instances.py <LANGUAGE> <SEARCH_TER
 python3 follow_repos_by_search_term.py <LANGUAGE> <SEARCH_TERM> <CUSTOM_LIST_NAME>(optional)
 
 # Finds top repositories that have a minimum 500 stars and use the provided programming language.
-python3 follow_top_repos_by_star_count.py <LANGUAGE> <CUSTOM_LIST_NAME>(optional)
+python3 follow_top_repos_by_star_count.py <LANGUAGE> <CUSTOM_LIST_NAME>(optional) <STARS>(optional)
 
 # Unfollows all projects you're currently following that are not in a custom list.
 python3 unfollow_all_followed_projects.py
@@ -74,20 +74,23 @@ python3 unfollow_all_followed_projects.py
 # Takes all currently followed repos and moves them to a custom list.
 python3 move_all_repos_to_lgtm_lists.py <CUSTOM_LIST_NAME>
 
-# Provided a output file containing ghtopdep's JSON output, this script will follow all repos from the
+# Provided an output file containing ghtopdep's JSON output, this script will follow all repos from the
 # ghtopdep's results in your LGTM account.
 python3 follow_repos_from_ghtopdep.py <FILE_PATH_TO_THE_GHTOPDEP_JSON_OUTPUT_FILE>
 
 # Given you've ran the custom projects lists feature, this script will process the cached files
-# and move the selected followed projects into a given cached file. Providing a single argument
+# and move the selected followed projects into a custom list on lgtm.com. Providing a single argument
 # of the name of the cached file will result in just that cached file being processed. Providing
-# no arguments will result in every cached fiel in being processed.
-python3 move_repos_to_lgtm_lists.py <NAME_OF_CACHED_FILE>(optional)
+# no arguments will result in every cached file in being processed.
+python3 move_cached_repos_to_lgtm_lists.py <NAME_OF_CACHED_FILE>(optional)
 
 # Given you've ran the custom projects lists feature, this script will process the cached files
 # and unfollow the projects from your followed project list. This is useful if you ever nerf your
 # followed projects list and you still retained a list of followed projects.
 python3 unfollow_projects_from_cached_file.py <NAME_OF_CACHED_FILE>(optional)
+
+# Given you've ran the
+python3 move_repos_to_lgtm.py <CACHE_FILE_NAME>(optional)
 ```
 
 ## The Custom Projects Lists Feature
@@ -116,7 +119,7 @@ commands. This CUSTOM_LIST_NAME represents the name of a LGTM project list that 
 
 3. Run the command below. This will take a cached file you created earlier, create a LGTM custom project list, add the projects to that project list, and finally unfollow the repositories in your LGTM account.
 
-    `python3 move_repos_to_lgtm_lists.py`
+    `python3 move_cached_repos_to_lgtm_lists.py`
 
 Note: When naming a project custom list name, please use alphanumeric, dashes, and underscore characters only.
 
