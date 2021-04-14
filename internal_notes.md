@@ -10,10 +10,43 @@
 5. `python3 move_all_repos_to_lgtm_lists.py <CUSTOM_LIST_NAME>`
 
 
-/root/tools/ghtopdep/cache
+
+- [X] python3 follow_repos_from_ghtopdep.py /root/tools/ghtopdep/cache/flask-mongoengine-ghtopdep-results-0.json  
+
+- [x] python3 follow_repos_from_ghtopdep.py /root/tools/ghtopdep/cache/mongoengine-ghtopdep-results-0.json
+
+- [x] python3 follow_repos_from_ghtopdep.py /root/tools/ghtopdep/cache/flask-pymongo-ghtopdep-results-0.json      
+
+- [ ] python3 follow_repos_from_ghtopdep.py /root/tools/ghtopdep/cache/pymongo-ghtopdep-results-0.json
 
 
-flask-mongoengine-ghtopdep-results-0.json  
-mongoengine-ghtopdep-results-0.json
-flask-pymongo-ghtopdep-results-0.json      
-pymongo-ghtopdep-results-0.json
+
+
+
+
+
+
+
+
+
+
+
+python3 runner.py https://github.com/MongoEngine/mongoengine --minstar 1 --output_file_name mongoengine-ghtopdep-results-1-star
+
+python3 runner.py https://github.com/mongodb/mongo-python-driver --minstar 1 --output_file_name pymongo-ghtopdep-results-1-star
+
+python3 runner.py https://github.com/dcrosta/flask-pymongo --minstar 1 --output_file_name flask-pymongo-ghtopdep-results-1-star
+
+python3 runner.py https://github.com/MongoEngine/flask-mongoengine --minstar 1 --output_file_name flask-mongoengine-ghtopdep-results-1-star
+
+
+
+---------------- TODO
+
+- [ ] python3 follow_repos_from_ghtopdep.py /root/tools/ghtopdep/cache/flask-mongoengine-ghtopdep-results-1-star.json  
+
+- [ ] python3 follow_repos_from_ghtopdep.py /root/tools/ghtopdep/cache/mongoengine-ghtopdep-results-1-star.json
+
+- [ ] python3 follow_repos_from_ghtopdep.py /root/tools/ghtopdep/cache/flask-pymongo-ghtopdep-results-1-star.json      
+
+- [ ] python3 follow_repos_from_ghtopdep.py /root/tools/ghtopdep/cache/pymongo-ghtopdep-results-1-star.json
