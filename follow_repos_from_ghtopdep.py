@@ -1,4 +1,4 @@
-# python3 follow_repos_from_ghtopdep.py
+# python3 follow_repos_from_ghtopdep.py <PATH_TO_GHTOPDEP>
 
 from typing import List
 from lgtm import LGTMSite, LGTMDataFilters
