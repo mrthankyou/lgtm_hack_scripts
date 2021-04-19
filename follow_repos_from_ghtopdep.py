@@ -23,7 +23,7 @@ def save_project_to_lgtm(site: 'LGTMSite', repo_name: str) -> dict:
         project = site.follow_repository(repo_url)
     except LGTMRequestException:
         print('issue following repo. skipping for now.')
-    except Github.GithubException.UnknownObjectException:
+    except Github.GithubException:
         print('issue following repo. skipping for now.')
 
     print("Saved the project: " + repo_name)
@@ -48,7 +48,7 @@ for repo_name in formatted_data:
     except LGTMRequestException:
         print('issue finding repo. skipping for now.')
         continue
-    except Github.GithubException.UnknownObjectException:
+    except Github.GithubException:
         print('issue finding repo. skipping for now.')
         continue
 
