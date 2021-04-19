@@ -47,7 +47,9 @@ for repo_name in formatted_data:
         repo = github.get_repo(repo_name)
     except LGTMRequestException:
         print('issue finding repo. skipping for now.')
-
+        continue
+    except Github.GithubException.UnknownObjectException:
+        print('issue finding repo. skipping for now.')
         continue
 
     if repo.archived or repo.fork:
