@@ -1,7 +1,7 @@
 # python3 follow_repos_from_ghtopdep.py <PATH_TO_GHTOPDEP>
 
 from typing import List
-from lgtm import LGTMSite, LGTMDataFilters
+from lgtm import LGTMSite, LGTMDataFilters, LGTMRequestException
 
 import os
 import sys
@@ -17,7 +17,12 @@ def save_project_to_lgtm(site: 'LGTMSite', repo_name: str) -> dict:
     time.sleep(1)
 
     repo_url: str = 'https://github.com/' + repo_name
-    project = site.follow_repository(repo_url)
+
+    try:
+        project = site.follow_repository(repo_url)
+    except LGTMRequestException:
+        print('issue following repo. skipping for now.')
+
     print("Saved the project: " + repo_name)
     return project
 
@@ -29,14 +34,18 @@ formatted_data: dict
 ghtopdep_file_path = sys.argv[1]
 
 with open(ghtopdep_file_path) as ghtopdep_output_file:
-
    raw_data = ghtopdep_output_file.read()
    formatted_data = json.loads(raw_data)
 
 
 for repo_name in formatted_data:
     time.sleep(1)
-    repo = github.get_repo(repo_name)
+    try:
+        repo = github.get_repo(repo_name)
+    except LGTMRequestException:
+        print('issue finding repo. skipping for now.')
+
+        continue
 
     if repo.archived or repo.fork:
         continue
