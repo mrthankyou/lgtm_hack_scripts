@@ -12,16 +12,21 @@ class ProjectBuild(SimpleProject):
             site = LGTMSite.create_from_file()
             data = site.retrieve_project(self.display_name)
 
-            # A failed protoproject build will always be intrepreted to LGTM as a project that can't be found.
+            # A failed protoproject build will always be intrepreted to
+            # LGTM as a project that can't be found.
             if 'code' in data and data['code'] == 404:
                 return False
 
-            # In this case, the protoproject likely succeeded. To confirm this,
-            # we check the language status to confirm the build succeeded.
-            for language in data['languages']:
-                if language['status'] == "success":
-                    self.key = data['id']
-                    return True
+            # In rare cases languages isn't part of the data we get back.
+            # My best solution is to just ignore the repo in that case and return
+            # false.
+            if data.has_key("languages"):
+                # In this case, the protoproject likely succeeded. To confirm this,
+                # we check the language status to confirm the build succeeded.
+                for language in data['languages']:
+                    if language['status'] == "success":
+                        self.key = data['id']
+                        return True
 
         return not self.build_in_progress() and not self.build_failed()
 
