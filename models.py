@@ -20,7 +20,7 @@ class ProjectBuild(SimpleProject):
             # In rare cases languages isn't part of the data we get back.
             # My best solution is to just ignore the repo in that case and return
             # false.
-            if data.has_key("languages"):
+            if "languages" in data:
                 # In this case, the protoproject likely succeeded. To confirm this,
                 # we check the language status to confirm the build succeeded.
                 for language in data['languages']:
