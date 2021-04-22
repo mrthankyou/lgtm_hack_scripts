@@ -59,13 +59,11 @@ python3 unfollow_org.py <GITHUB_ORG_TO_UNFOLLOW>
 # Finds all repositories for a specified Github Organization and adds them to your specified LGTM account's project list.
 python3 move_org_projects_under_project_list_then_unfollow.py <LGTM_PROJECT_LIST_NAME> <GITHUB_ORG>
 
-# Finds repositories given a search term. Under the hood, the script first looks for instances in code of the search term provided and then follows the repos of those code instances
-python3 follow_repos_by_search_term_via_code_instances.py <LANGUAGE> <SEARCH_TERM>
-
 # Finds repositories given a search term. Under the hood, the script searches Github for repositories that match the provided search term.
 python3 follow_repos_by_search_term.py <LANGUAGE> <SEARCH_TERM> <CUSTOM_LIST_NAME>(optional)
 
 # Finds top repositories that have a minimum 500 stars and use the provided programming language.
+<<<<<<< HEAD
 python3 follow_top_repos_by_star_count.py <LANGUAGE> <CUSTOM_LIST_NAME>(optional) <STARS>(optional)
 
 # Unfollows all projects you're currently following that are not in a custom list.
@@ -91,6 +89,12 @@ python3 unfollow_projects_from_cached_file.py <NAME_OF_CACHED_FILE>(optional)
 
 # Given you've ran the
 python3 move_repos_to_lgtm.py <CACHE_FILE_NAME>(optional)
+=======
+python3 follow_top_repos_by_star_count.py <LANGUAGE>  
+
+# Re-runs failed project builds in an attempt to get the build to succeed.
+python3 rebuild_all_following_projects.py
+>>>>>>> 72d3e79a4ecda35293d4a1a04b79f1bdaa59c780
 ```
 
 ## The Custom Projects Lists Feature
