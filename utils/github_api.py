@@ -5,7 +5,7 @@ import time
 
 
 def create() -> Github:
-    with open("config.yml") as config_file:
+    with open("/root/tools/lgtm_hack_scripts/config.yml") as config_file:
         config = yaml.safe_load(config_file)
         github: dict = config['github']
         return Github(github['api_key'])

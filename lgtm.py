@@ -275,7 +275,7 @@ class LGTMSite:
 
     @staticmethod
     def create_from_file() -> 'LGTMSite':
-        with open("config.yml") as config_file:
+        with open("/root/tools/lgtm_hack_scripts/config.yml") as config_file:
             config = yaml.safe_load(config_file)
             lgtm: dict = config['lgtm']
             return LGTMSite(

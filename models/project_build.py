@@ -6,7 +6,7 @@ class ProjectBuild(SimpleProject):
     def build_successful(self) -> bool:
         if self.is_protoproject():
             # A throttle that although may not be necessary a nice plus.
-            time.sleep(2)
+            time.sleep(1)
             site = LGTMSite.create_from_file()
             data = site.retrieve_project(self.display_name)
 

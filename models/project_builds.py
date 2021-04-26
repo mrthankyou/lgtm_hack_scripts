@@ -7,7 +7,7 @@ class ProjectBuilds:
 
     def unfollow_projects(self, site: 'LGTMSite'):
         for project in self.projects:
-            time.sleep(2)
+            time.sleep(1)
 
             if project.is_protoproject():
                 # Protoprojects are gnarly because I believe LGTM updates the key
@@ -27,7 +27,7 @@ class ProjectBuilds:
 
     def unfollow_proto_project(self, site: 'LGTMSite', id: int):
         try:
-            time.sleep(2)
+            time.sleep(1)
 
             site.unfollow_proto_repository_by_id(id)
         except LGTMRequestException as e:
@@ -38,7 +38,7 @@ class ProjectBuilds:
 
     def unfollow_real_project(self, site: 'LGTMSite', id: int):
         try:
-            time.sleep(2)
+            time.sleep(1)
 
             site.unfollow_repository_by_id(id)
         except LGTMRequestException as e:
