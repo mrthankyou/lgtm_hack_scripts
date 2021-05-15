@@ -190,7 +190,11 @@ class LGTMSite:
         url = "https://lgtm.com/internal_api/v0.2/unfollowProject" if not simple_project.is_protoproject() \
             else "https://lgtm.com/internal_api/v0.2/unfollowProtoproject"
         data = simple_project.make_post_data()
-        self._make_lgtm_post(url, data)
+        try:
+            return self._make_lgtm_post(url, data)
+        except LGTMRequestException:
+            print('Failed unfollowing project. `%s`' % simple_project.display_name)
+
 
     def unfollow_repository_by_org(self, org: str, include_protoproject: bool = False):
         projects_under_org = self.get_my_projects_under_org(org)
